@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid my-4 ">
+    <div class="text-center bg-primary text-white py-3" style="max-width: 500px; margin: 0 auto">
+        <h2> [[${pageTitle}]] </h2>
+    </div>
+
+    <form th:action="@{/users/save}" method="post" th:object="${user}"
+    style="max-width: 500px; margin: 0 auto;background-color: #f8f9fa; padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="border border-secondary rounded p-3 form-group">
+            <div class="form-group row mb-2">
+                <label class="col-md-4 col-form-label text-muted" > E-mail</label>
+                <div class="col-md-8">
+                    <input type="email" th:field="*{email}" class="form-control" required minlength="8" maxlength="45"
+                           style="width: 100%;"/>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-md-4 col-form-label text-muted" > First Name</label>
+                <div class="col-md-8">
+                    <input type="text" th:field="*{firstName}" class="form-control" required minlength="2" maxlength="45"
+                           style="width: 100%;"/>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-md-4 col-form-label text-muted" > Last Name</label>
+                <div class="col-md-8">
+                    <input type="text" th:field="*{lastName}" class="form-control" required minlength="2" maxlength="45"
+                           style="width: 100%;"/>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-md-4 col-form-label text-muted" > Password</label>
+                <div class="col-md-8">
+                    <input type="password" th:field="*{password}" class="form-control" required minlength="5" maxlength="15"
+                           style="width: 100%;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-muted" >Enebled:</label>
+                <div class="col-md-8">
+                    <input type="checkbox" th:field="*{enabled}" class="form-check-input"/>
+                </div>
+            </div>
+            <div class="text-center mt-3 ">
+                <button type="submit" class="btn btn-primary mt-2" style="background-color: #007bff;">Save</button>
+                <button type="button" class="btn btn-secondary mt-2" onclick="cancelForm()" style="background-color: #6c757d;">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function cancelForm() {
+        window.location = "[[@{/users}]]";
+    }
+</script>
+</body>
+</html>
